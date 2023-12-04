@@ -5,8 +5,6 @@
 #include <cstdlib>
 #include <map>
 
-#include <iostream>
-
 using namespace std;
 
 vector<string> split(string& str, char delimiter)
@@ -26,7 +24,6 @@ time_t stringToDate(string& today, int addMon, bool isExp)
     vector<string> ymd;
     
     ymd = split(today, '.');
-    // cout << ymd[0] << " " << ymd[1] << " " << ymd[2] << endl;
     tDate.tm_year  = atoi(ymd[0].c_str());
     tDate.tm_mon = atoi(ymd[1].c_str()) + addMon - 1;
     if (isExp)
@@ -36,7 +33,6 @@ time_t stringToDate(string& today, int addMon, bool isExp)
     mktime(&tDate);
     if (tDate.tm_mday > 28)
         tDate.tm_mday = 28;
-    // cout << tDate.tm_year << " " << tDate.tm_mon << " " << tDate.tm_mday << endl;
     return mktime(&tDate);
 }
 
@@ -71,10 +67,7 @@ vector<int> solution(string today, vector<string> terms, vector<string> privacie
     map<string, int> mTerms;
     
     dToday = stringToDate(today, 0, false);
-    // cout << dToday << endl;
     mTerms = vectorStringToMap(terms);
-    // for (map<char, int>::iterator it = mTerms.begin(); it != mTerms.end(); ++it)
-    //     cout << it->first << " " << it->second << endl;
     for (size_t i = 0; i < privacies.size(); ++i)
     {
         if (!isExpVaild(privacies[i], mTerms, dToday))
