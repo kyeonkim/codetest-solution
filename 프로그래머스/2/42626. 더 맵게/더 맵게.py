@@ -6,7 +6,7 @@ def solution(scoville, K):
     heapq.heapify(scoville)
     while scoville[0] < K:
         min1 = heapq.heappop(scoville)
-        if len(scoville) == 0:
+        if not scoville:
             return -1
         min2 = heapq.heappop(scoville)
         mixScoville = min1 + min2 * 2
